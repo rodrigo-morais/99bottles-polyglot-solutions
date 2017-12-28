@@ -24,9 +24,19 @@
     (str (str number) " bottles of beer on the wall, " (str number) " bottles of beer.\n"
        "Take one down and pass it around, " (str (- number 1)) " bottles of beer on the wall.\n\n")))
 
+(defmulti verse-multimethod (fn [number] number))
+(defmethod verse-multimethod 0 [number] (str "No more bottles of beer on the wall, no more bottles of beer.\n"
+  "Go to the store and buy some more, 99 bottles of beer on the wall.\n\n"))
+(defmethod verse-multimethod 1 [number] (str "1 bottle of beer on the wall, 1 bottle of beer.\n"
+  "Take it down and pass it around, no more bottles of beer on the wall.\n\n"))
+(defmethod verse-multimethod 2 [number] (str "2 bottles of beer on the wall, 2 bottles of beer.\n"
+  "Take one down and pass it around, 1 bottle of beer on the wall.\n\n"))
+(defmethod verse-multimethod :default [number] (str (str number) " bottles of beer on the wall, " (str number) " bottles of beer.\n"
+  "Take one down and pass it around, " (str (- number 1)) " bottles of beer on the wall.\n\n"))
+
 (defn verse
   [number]
-  (verse-condp number))
+  (verse-multimethod number))
 
 (defn verses
   [begin end]
