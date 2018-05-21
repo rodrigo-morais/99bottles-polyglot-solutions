@@ -8,7 +8,7 @@ Our goal is to produce the lyrics to that beloved classic, that field-trip favor
 
 To run the environment is necessary `Docker`.
 
-In `js` directory run:
+In `elm` directory run:
 
 ```sh
 docker build -t 99_bottles_beer/elm .
